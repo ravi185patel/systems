@@ -31,7 +31,7 @@ public class MessageReactiveDao {
         return messageRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
                 .flatMap(optionalMessage -> {
                     if (optionalMessage.isPresent()) {
-                        message.setMessageId(id);
+                        message.setId(id);
                         return messageRepository.save(message);
                     }
 

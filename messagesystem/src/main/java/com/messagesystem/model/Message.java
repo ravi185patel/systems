@@ -3,44 +3,76 @@ package com.messagesystem.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+
+
+//@Document(collection = "message")
 public class Message {
+
     @Id
-    private String messageId;
-    private String messageType;
+    private String id;
+    private String sender;
+    private String receiver;
+    private String data;
+    private MessageStatusEnum status = MessageStatusEnum.INIT;
+    private MessageTypeEnum messageType;
 
-    private String messageContent;
-
-    public String getMessageId() {
-        return messageId;
+    public String getId() {
+        return id;
     }
 
-    public void setMessageId(String messageId) {
-        this.messageId = messageId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getMessageType() {
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public MessageStatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(MessageStatusEnum status) {
+        this.status = status;
+    }
+
+    public MessageTypeEnum getMessageType() {
         return messageType;
     }
 
-    public void setMessageType(String messageType) {
+    public void setMessageType(MessageTypeEnum messageType) {
         this.messageType = messageType;
-    }
-
-    public String getMessageContent() {
-        return messageContent;
-    }
-
-    public void setMessageContent(String messageContent) {
-        this.messageContent = messageContent;
     }
 
     @Override
     public String toString() {
         return "Message{" +
-                "messageId='" + messageId + '\'' +
-                ", messageType='" + messageType + '\'' +
-                ", messageContent='" + messageContent + '\'' +
+                " id='" + id + '\'' +
+                ", sender='" + sender + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", data='" + data + '\'' +
+                ", status=" + status +
+                ", messageType=" + messageType +
                 '}';
     }
 }
