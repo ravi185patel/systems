@@ -2,7 +2,14 @@ package com.message.publisher.model;
 
 import com.message.publisher.constant.MessageStatusEnum;
 import com.message.publisher.constant.MessageTypeEnum;
+import com.message.publisher.custome.annotations.ValidSenderReceiver;
 
+@ValidSenderReceiver(
+        sender = "sender",
+        receiver = "receiver",
+        messageType = MessageTypeEnum.SMS,
+        message = "Invalid sender and receiver!"
+)
 public class MessageDto {
 
     private String messageId;

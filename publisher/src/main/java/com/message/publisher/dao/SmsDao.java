@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class SmsDao {
+public class SmsDao implements PublisherDaoInterface<Sms>{
 
     private final SmsRepository smsRepository;
 

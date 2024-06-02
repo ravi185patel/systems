@@ -2,23 +2,25 @@ package com.message.publisher.entity;
 
 import com.message.publisher.constant.MessageStatusEnum;
 import com.message.publisher.constant.MessageTypeEnum;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "email")
 public class Email {
-    private String id;
+    @Id
+    private String messageId;
     private String sender;
     private String receiver;
     private String data;
     private MessageStatusEnum status = MessageStatusEnum.INIT;
-    private MessageTypeEnum messageType = MessageTypeEnum.EMAIL;
+    private MessageTypeEnum messageType = MessageTypeEnum.SMS;
 
-    public String getId() {
-        return id;
+    public String getMessageId() {
+        return messageId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
     }
 
     public String getSender() {

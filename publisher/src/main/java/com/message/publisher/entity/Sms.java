@@ -65,4 +65,15 @@ public class Sms {
     }
 
 
+    @Override
+    public String toString() {
+        return "Sms{" +
+                "messageId='" + messageId + '\'' +
+                ", sender='" + sender + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", data='" + data + '\'' +
+                ", status=" + status +
+                ", messageType=" + messageType +
+                '}';
+    }
 }
