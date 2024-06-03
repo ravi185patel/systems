@@ -2,19 +2,31 @@ package com.message.publisher.entity;
 
 import com.message.publisher.constant.MessageStatusEnum;
 import com.message.publisher.constant.MessageTypeEnum;
+import com.message.publisher.custome.annotations.ValidSenderReceiver;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "sms")
+@ValidSenderReceiver(
+        sender = "sender",
+        receiver = "receiver",
+        messageType = MessageTypeEnum.SMS,
+        message = "Invalid sender and receiver!"
+)
 public class Sms {
 
     @Id
     private String messageId;
     private String sender;
     private String receiver;
+    @NotNull(message = "Please provide message content.")
+    @Size(min=5, max=100, message="Message content should be between 5 - 100 characters.")
     private String data;
     private MessageStatusEnum status = MessageStatusEnum.INIT;
-    private MessageTypeEnum messageType = MessageTypeEnum.SMS;
+    @NotNull(message = "Please provide message type.")
+    private MessageTypeEnum messageType;
 
     public String getMessageId() {
         return messageId;

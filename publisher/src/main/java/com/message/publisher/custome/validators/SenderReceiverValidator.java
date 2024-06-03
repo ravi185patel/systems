@@ -19,23 +19,14 @@ public class SenderReceiverValidator  implements ConstraintValidator<ValidSender
         this.sender = validSenderReceiver.sender();
         this.receiver = validSenderReceiver.receiver();
         this.messageType = validSenderReceiver.messageType();
-        System.out.println(this.sender);
-        System.out.println(this.receiver);
-        System.out.println(this.messageType);
     }
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext constraintValidatorContext) {
-        System.out.println("Is valid");
         Object sender = new BeanWrapperImpl(value).getPropertyValue(this.sender);
         Object receiver = new BeanWrapperImpl(value).getPropertyValue(this.sender);
         Object messageType = new BeanWrapperImpl(value).getPropertyValue("messageType");
 
-        System.out.println((String)sender);
-        System.out.println((String)receiver);
-        System.out.println(" sender and receiver done");
-        System.out.println(messageType.toString());
-        System.out.println(" message type ");
         if(messageType.toString().equalsIgnoreCase(MessageTypeEnum.SMS.toString())){
             return validPhoneNo(String.valueOf(sender)) && validPhoneNo(String.valueOf(receiver));
         }else{

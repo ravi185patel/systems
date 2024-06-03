@@ -24,11 +24,4 @@ public @interface ValidSenderReceiver {
 
     Class<? extends Payload>[] payload() default {};
 
-//    @Target({ ElementType.TYPE })
-//    @Retention(RetentionPolicy.RUNTIME)
-//    @interface List {
-//        PasswordMatching[] value();
-//    }
 }
-//public interface ValidSenderReceiver {
-//}

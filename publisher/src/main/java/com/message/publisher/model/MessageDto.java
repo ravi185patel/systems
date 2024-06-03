@@ -2,7 +2,11 @@ package com.message.publisher.model;
 
 import com.message.publisher.constant.MessageStatusEnum;
 import com.message.publisher.constant.MessageTypeEnum;
+import com.message.publisher.custome.annotations.ValidMessageType;
 import com.message.publisher.custome.annotations.ValidSenderReceiver;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @ValidSenderReceiver(
         sender = "sender",
@@ -13,10 +17,18 @@ import com.message.publisher.custome.annotations.ValidSenderReceiver;
 public class MessageDto {
 
     private String messageId;
+
     private String sender;
+
     private String receiver;
+
+    @NotNull(message = "Please provide message content.")
+    @Size(min=5, max=100, message="Message content should be between 5 - 100 characters.")
     private String data;
     private MessageStatusEnum status = MessageStatusEnum.INIT;
+
+    @NotNull(message = "Please provide message type.")
+    @ValidMessageType(anyOf = {MessageTypeEnum.SMS, MessageTypeEnum.EMAIL,MessageTypeEnum.WHATSUP})
     private MessageTypeEnum messageType;
 
     public String getMessageId() {

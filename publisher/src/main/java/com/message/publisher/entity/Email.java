@@ -2,18 +2,30 @@ package com.message.publisher.entity;
 
 import com.message.publisher.constant.MessageStatusEnum;
 import com.message.publisher.constant.MessageTypeEnum;
+import com.message.publisher.custome.annotations.ValidSenderReceiver;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "email")
+@ValidSenderReceiver(
+        sender = "sender",
+        receiver = "receiver",
+        messageType = MessageTypeEnum.EMAIL,
+        message = "Invalid sender and receiver!"
+)
 public class Email {
     @Id
     private String messageId;
     private String sender;
     private String receiver;
+    @NotNull(message = "Please provide message content.")
+    @Size(min=5, max=10, message="Message content should be between 5 - 100 characters.")
     private String data;
     private MessageStatusEnum status = MessageStatusEnum.INIT;
-    private MessageTypeEnum messageType = MessageTypeEnum.SMS;
+    @NotNull(message = "Please provide message type.")
+    private MessageTypeEnum messageType;
 
     public String getMessageId() {
         return messageId;
@@ -63,4 +75,15 @@ public class Email {
         this.messageType = messageType;
     }
 
+    @Override
+    public String toString() {
+        return "Email{" +
+                "messageId='" + messageId + '\'' +
+                ", sender='" + sender + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", data='" + data + '\'' +
+                ", status=" + status +
+                ", messageType=" + messageType +
+                '}';
+    }
 }

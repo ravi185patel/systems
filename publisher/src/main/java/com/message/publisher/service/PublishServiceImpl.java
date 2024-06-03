@@ -1,6 +1,7 @@
 package com.message.publisher.service;
 
 import com.message.publisher.constant.MessageTypeEnum;
+import com.message.publisher.custome.exception.RecordNotFoundException;
 import com.message.publisher.dao.DaoFactory;
 import com.message.publisher.dao.PublisherDaoInterface;
 import com.message.publisher.entity.Email;
@@ -42,7 +43,7 @@ public class PublishServiceImpl implements PublishService{
             logger.info("Present publish message "+sms.toString());
             return commonMapper.smsEntityToDto(sms);
         }else{
-            throw new RuntimeException("No Record found for id:"+id);
+            throw new RecordNotFoundException("No publish message found for id:"+id);
         }
     }
 
