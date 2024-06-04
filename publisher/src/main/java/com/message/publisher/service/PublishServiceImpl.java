@@ -9,6 +9,7 @@ import com.message.publisher.entity.Sms;
 import com.message.publisher.mapper.CommonMapper;
 import com.message.publisher.model.MessageDto;
 import com.message.publisher.producer.MessageKafkaProducer;
+import org.apache.kafka.common.KafkaException;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -55,7 +56,8 @@ public class PublishServiceImpl implements PublishService{
             case SMS -> messageDtoRes = saveSms(messageDto);
             case EMAIL -> messageDtoRes = saveEmail(messageDto);
         }
-        this.messageKafkaProducer.sendMessage(messageDtoRes.getMessageId(),messageDtoRes.getMessageType());
+
+        this.messageKafkaProducer.sendMessage(messageDtoRes.getMessageId(), messageDtoRes.getMessageType());
         logger.info("Message published in kafka based on message type: "+messageDtoRes.getMessageType());
         return messageDtoRes;
     }
