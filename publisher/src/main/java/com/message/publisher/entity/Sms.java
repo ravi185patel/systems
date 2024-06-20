@@ -81,7 +81,7 @@ public class Sms {
     public String toString() {
         return "Sms{" +
                 "messageId='" + messageId + '\'' +
-                ", sender='" + sender + '\'' +
+                ", sender=XYZ3char'" + sender + '\'' +
                 ", receiver='" + receiver + '\'' +
                 ", data='" + data + '\'' +
                 ", status=" + status +

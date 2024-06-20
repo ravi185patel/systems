@@ -2,7 +2,8 @@ package com.message.publisher.dao;
 
 import com.message.publisher.entity.Sms;
 import com.message.publisher.repository.SmsRepository;
-import org.jboss.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
 @Component
 public class SmsDao implements PublisherDaoInterface<Sms>{
 
-    private static final Logger logger = Logger.getLogger(SmsDao.class);
+    private static final Logger logger = LogManager.getLogger(SmsDao.class);
     private final SmsRepository smsRepository;
 
     @Autowired

@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v2")
+@RequestMapping("/api/v1")
 public class SmsWorker {
 
     private final SmsService smsService;

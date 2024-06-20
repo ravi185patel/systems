@@ -1,16 +1,15 @@
 package com.message.publisher.dao;
 
 import com.message.publisher.constant.MessageTypeEnum;
-import com.message.publisher.controller.PublisherController;
-import com.message.publisher.entity.Email;
-import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Component
 public class DaoFactory {
 
-    private static final Logger logger = Logger.getLogger(DaoFactory.class);
+    private static final Logger logger = LogManager.getLogger(DaoFactory.class);
     private final SmsDao smsDao;
     private final EmailDao emailDao;
 

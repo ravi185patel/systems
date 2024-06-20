@@ -9,19 +9,20 @@ import com.message.publisher.entity.Sms;
 import com.message.publisher.mapper.CommonMapper;
 import com.message.publisher.model.MessageDto;
 import com.message.publisher.producer.MessageKafkaProducer;
-import org.apache.kafka.common.KafkaException;
-import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 @Service
 @Primary
 public class PublishServiceImpl implements PublishService{
 
-    private static final Logger logger = Logger.getLogger(PublishServiceImpl.class);
+    private static final Logger logger = LogManager.getLogger(PublishServiceImpl.class);
     private final DaoFactory daoFactory;
     private MessageKafkaProducer messageKafkaProducer;
 
@@ -65,14 +66,14 @@ public class PublishServiceImpl implements PublishService{
     private MessageDto saveSms(MessageDto messageDto){
         Sms sms = commonMapper.dtoToSmsEntity(messageDto);
         sms = (Sms) daoFactory.getDaoInstance(messageDto.getMessageType()).save(sms);
-        logger.info("Publish message saved : "+sms.toString());
+        logger.info("Publish message saved : "+sms.toString()); // logs only messaging id.
         return commonMapper.smsEntityToDto(sms);
     }
 
     private MessageDto saveEmail(MessageDto messageDto){
         Email email = commonMapper.dtoToEmailEntity(messageDto);
         email = (Email) daoFactory.getDaoInstance(messageDto.getMessageType()).save(email);
-        logger.info("Publish message saved : "+email.toString());
+        logger.info("Publish message saved : "+email.toString()); // logs only messaging id.
         return commonMapper.emailEntityToDto(email);
     }
 }

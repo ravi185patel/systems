@@ -14,7 +14,7 @@ public class CommonMapper{
     @Autowired
     private ModelMapper modelMapper;
 
-
+    // parsing exception
     public Sms dtoToSmsEntity(MessageDto messageDto) {
         return modelMapper.map(messageDto, Sms.class);
     }

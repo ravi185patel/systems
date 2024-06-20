@@ -7,10 +7,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 @Component
 public class EmailDao implements PublisherDaoInterface<Email>{
 
+    private static final Logger logger = LogManager.getLogger(SmsDao.class);
     private final EmailRepository emailRepository;
 
     @Autowired

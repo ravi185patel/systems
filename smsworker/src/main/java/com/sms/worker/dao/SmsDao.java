@@ -32,12 +32,6 @@ public class SmsDao {
     }
 
     public Optional<Sms> update(Sms sms) {
-         Sms oldSms = findById(sms.getMessageId()).get();
-         sms.setStatus(MessageStatusEnum.RECEIVED);
-         sms.setData(oldSms.getData());
-         sms.setSender(oldSms.getSender());
-         sms.setReceiver(oldSms.getReceiver());
-         sms.setMessageType(oldSms.getMessageType());
         return Optional.of(smsRepository.save(sms));
     }
 

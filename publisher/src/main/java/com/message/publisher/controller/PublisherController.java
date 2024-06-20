@@ -4,17 +4,19 @@ import com.message.publisher.constant.MessageTypeEnum;
 import com.message.publisher.model.MessageDto;
 import com.message.publisher.service.PublishService;
 import jakarta.validation.Valid;
-import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @RestController
-@RequestMapping("/api/v2")
+@RequestMapping("/api/v1")
 public class PublisherController {
 
-    private static final Logger logger = Logger.getLogger(PublisherController.class);
+    private static final Logger logger = LogManager.getLogger(PublisherController.class);
     private final PublishService publishService;
 
     @Autowired

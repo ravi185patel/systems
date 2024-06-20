@@ -3,20 +3,19 @@ package com.message.publisher.producer;
 
 import com.message.publisher.constant.MessageTypeEnum;
 import com.message.publisher.custome.exception.KafkaCustomException;
-import com.message.publisher.service.PublishServiceImpl;
-import org.apache.kafka.common.KafkaException;
-import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Service
 public class MessageKafkaProducer {
 
-    private static final Logger logger = Logger.getLogger(MessageKafkaProducer.class);
+    private static final Logger logger = LogManager.getLogger(MessageKafkaProducer.class);
 
     private KafkaTemplate<String,String> kafkaTemplate;
 
@@ -38,6 +37,6 @@ public class MessageKafkaProducer {
             throw new KafkaCustomException("kafka is down/some issue on kafka side.");
         }
 
-        System.out.println("sending to Kafka "+ messageCon.toString());
+        logger.info("sending to Kafka "+ messageCon.toString());
     }
 }
